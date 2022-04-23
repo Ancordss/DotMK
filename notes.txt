@@ -1,0 +1,14 @@
+con este script crearemos dotfiles [a futuro cuando ingrese la ruta se creara el link simbolico y se movera a la carpeta]
+por ahora para empezar iniciaremos con hacer crear la carpeta .dotfiles luego que mueva la config de zsh, bash, nvim hacia ella que cree los links simbolicos 
+despues de eso haremos un menu para preguntar si quiere que se creen los dotfiles predeterminados o que se creen solo los que el escoja ya que son dotfiles simples los 
+que se crearan podra funcionar en cualquier distribucio al terminar esta primera fase tendre que probar que funcione en las demas distros 
+
+en la segunda fase intentare que el programa pueda crear dotfiles personalisados como puse en el parentesis de arriba ademas de eso agregar la opcion para subir directamente a github 
+
+
+en la tercera fase intentare hacer que el .sh se ejecute en segundo plano como servicio y que cuando detecte cambios en alguno de los dotfiles pregunte si quiere subir los cambios y los suba. 
+
+
+
+
+  
