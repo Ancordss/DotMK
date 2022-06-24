@@ -143,7 +143,8 @@ function mvfiles {
     mv ~/.gitconfig ~/.dotfiles
     echo -e "[✔]::[DotMk]: gitconfig was moved !!!"
     sleep 1
-    mv .config/nvim/ ~/dotfiles
+    mkdir ~/.dotfiles/.config
+    mv ~/.config/nvim ~/.dotfiles/.config/
     echo -e "[✔]::[DotMk]: nvim config files was moved !!!"
     sleep 1
   else 
@@ -167,7 +168,7 @@ function symbolinks {
   ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
   echo "[✔]::[DotMk]: symbolic link gitconfig create"
   sleep 1
-  ln -sf ~/.dotfiles/.config/nvim/ ~/.config/nvim
+  ln -sf ~/.dotfiles/.config/nvim ~/.config/nvim
   echo "[✔]::[DotMk]: symbolic link config nvim created"
   sleep 1
 
