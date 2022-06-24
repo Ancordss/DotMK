@@ -110,5 +110,105 @@ sleep 1
 
 # Script Initiation
 #checkroot && sleep 1
+#checkgit 
+#archicheck && sleep 1 #clear && sleep 1
+
+
+function createfold {
+   echo -e "[!]::[warning]: run ls -al to see the directory"
+   echo [!]::[warning]: creating folder.....;
+   sleep 1
+   mkdir ~/.dotfiles
+   echo [✔]::[DotMk]: Folder created!!!;
+}
+
+function mvfiles {
+  echo [!]::[warning]: Moving files...;
+  echo -e "[!]::[warning]: this action is dangerous, pls dont do it if you don't now how to fix it "
+  
+  echo [?]::[warning]: continue y/n:;
+  read doit
+
+
+
+  if [[ $doit = Y || $doit = y ]] ; then
+    echo [✔]::[DotMk]: generating basic dotfiles!!!;
+    sleep 1
+    mv .bashrc ~/.dotfiles/
+    echo -e "[✔]::[DotMk]: bashrc was moved!!"
+    sleep 1
+    mv ~/.bash_profile ~/.dotfiles
+    echo -e "[✔]::[DotMk]: bash_profile was moved !!!"
+    sleep 1
+    mv ~/.gitconfig ~/.dotfiles
+    echo -e "[✔]::[DotMk]: gitconfig was moved !!!"
+    sleep 1
+    mv .config/nvim/ ~/dotfiles
+    echo -e "[✔]::[DotMk]: nvim config files was moved !!!"
+    sleep 1
+  else 
+    echo [x]::[warning]: read the docs for see what files are included in the basics dotflies. 
+    exit 1
+  fi
+    echo -e "[✔]::[DotMk]: all files moved..."
+    sleep 1
+}
+
+
+function symbolinks {
+  echo -e "[!]::[DotMk]: Creating symbolic links....";
+  sleep 1
+  ln -sf ~/.dotfiles/.bashrc ~/.bashrc
+  echo "[✔]::[DotMk]: symbolic link bashrc created"
+  sleep 1
+  ln -sf ~/.dotfiles/.bash_profile ~/.bash_profile
+  echo "[✔]::[DotMk]: symbolic link bash_profile created"
+  sleep 1
+  ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
+  echo "[✔]::[DotMk]: symbolic link gitconfig create"
+  sleep 1
+  ln -sf ~/.dotfiles/.config/nvim/ ~/.config/nvim
+  echo "[✔]::[DotMk]: symbolic link config nvim created"
+  sleep 1
+
+  echo "[✔]::[DotMk]: all symbolic links created!!!"
+}
+
+
+function basic {
+
+  createfold  && sleep 1 
+  mvfiles  && sleep 1
+  symbolinks  && sleep 1
+
+  echo -e "[✔]::[DotMk]: Dotfiles created..."
+  exit 1
+}
+
+function types {
+
+  echo -e "[!]::[DotMk]: there are 3 ways to create your dotfiles";
+  echo -e "[!]::[DotMk]: -1 basic dotfiles";
+  echo -e "[!]::[DotMk]: -2 advanced dotfiles"; 
+  echo -e "[!]::[DotMk]: -3 personalized";
+  echo [!]::[DotMk]: enter you selection 1/2/3:
+  read selection
+  if [[ $selection = 1 ]] ; then 
+    echo [✔]::[DotMk]: you have select basic.;
+    basic && sleep 1 
+  elif [[ $selection = 2 ]] ; then
+    echo [✔]::[DotMk]: you have select advanced.;
+  elif [[ $selection = 3 ]] ; then 
+    echo [✔]::[DotMk]: you have select personalized.;
+  fi
+}
+
+
+
+
+
+##Initiation 1
 checkgit 
-archicheck && sleep 1 #clear && sleep 1
+archicheck && sleep 1
+#starting with 
+types
