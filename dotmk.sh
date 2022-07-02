@@ -69,11 +69,11 @@ if [[ $(uname -m ) = x86_64 ]]; then
   touch temp.txt | cat /etc/os-release | grep PRETTY_NAME >> temp.txt
   ser= cat temp.txt
   if [ ! -e "./temp.txt" ]; then 
-    echo "unable to locate os name"
+    echo -e $Red"unable to locate os name$White"
     rm -rf temp.txt
     exit 1
   fi
-  echo -e "[✔]::[OS]: os found! $ser" ; 
+  echo -e $Cyan"[✔]::[OS]: os found! $ser $White" ; 
   rm -rf temp.txt
   #sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf  
 else
@@ -86,7 +86,32 @@ fi
 
 
 #logo here
-
+function showlogo {
+  clear
+echo ""
+sleep 0.1
+echo -e $Cyan   "    +${Yellow}-----------------------------------------------------------------${Cyan}+"
+sleep 0.1
+echo -e $Yellow   "    |                                                                $Yellow |"
+sleep 0.1
+echo -e "     |$Red              _____          _    __  __  _                     $Yellow |"
+sleep 0.1
+echo -e "     |$Red             |  __ \        | |  |  \/  || |                    $Yellow |"   
+sleep 0.1
+echo -e "     |$BRed             | |  | |  ___  | |_ | \  / || |                    $Yellow |"  
+sleep 0.1
+echo -e "     |$BRed             | |  | | / _ \ | __|| |\/| || |/ /                 $Yellow |" 
+sleep 0.1
+echo -e "     |$Red             | |__| || (_) || |_ | |  | ||   <                  $Yellow |" 
+sleep 0.1
+echo -e "     |$Red             |_____/  \___/  \__||_|  |_||_|\_\                 $Yellow |"  
+sleep 0.1
+echo -e "     |$Red              \e[1;37m  Made By: github.com/Ancordss                    $Yellow |"
+sleep 0.1
+echo -e $Cyan   "    +${Yellow}-----------------------------------------------------------------${Cyan}+${Yellow}"
+sleep 0.1
+echo -e "               \e[101m\e[1;37m::    Follow me on: twitter.com/Ancordss   ::\e[0m\n"              
+}
 
 
 #requeriments here
@@ -94,10 +119,10 @@ fi
 function checkgit {
 	which git > /dev/null 2>&1
 	if [ "$?" -eq "0" ]; then
-	echo [✔]::[Git]: installation found!;
+	echo -e "$cyan [✔]::[Git]: installation found! $White"
 else
 
-echo [x]::[warning]:this script require Git ;
+echo -e $Red "[x]::[warning]:this script require Git"
 echo ""
 echo [!]::[please wait]: Installing Git ..  ;
 pacman -S git --noconfirm
@@ -116,17 +141,18 @@ sleep 1
 
 function createfold {
    echo -e "[!]::[warning]: run ls -al to see the directory"
-   echo [!]::[warning]: creating folder.....;
+   echo -e "$Red[!]::[warning]: creating folder.....$White"
    sleep 1
-   mkdir ~/.dotfiles
-   echo [✔]::[DotMk]: Folder created!!!;
+   #mkdir ~/.dotfiles
+   echo -e $Cyan"[✔]::[DotMk]: Folder created!!! $White"
+   
 }
 
 function mvfiles {
-  echo [!]::[warning]: Moving files...;
-  echo -e "[!]::[warning]: this action is dangerous, pls dont do it if you don't now how to fix it "
+  echo -e "$Red[!]::[warning]: Moving files..."
+  echo -e "[!]::[warning]: this action is dangerous, pls dont do it if you don't now how to fix it"
   
-  echo [?]::[warning]: continue y/n:;
+  echo -e "[?]::[warning]: continue y/n:$White"
   read doit
 
 
@@ -134,45 +160,45 @@ function mvfiles {
   if [[ $doit = Y || $doit = y ]] ; then
     echo [✔]::[DotMk]: generating basic dotfiles!!!;
     sleep 1
-    mv .bashrc ~/.dotfiles/
+    #mv .bashrc ~/.dotfiles/
     echo -e "[✔]::[DotMk]: bashrc was moved!!"
     sleep 1
-    mv ~/.bash_profile ~/.dotfiles
+    #mv ~/.bash_profile ~/.dotfiles
     echo -e "[✔]::[DotMk]: bash_profile was moved !!!"
     sleep 1
-    mv ~/.gitconfig ~/.dotfiles
+    #mv ~/.gitconfig ~/.dotfiles
     echo -e "[✔]::[DotMk]: gitconfig was moved !!!"
     sleep 1
-    mkdir ~/.dotfiles/.config
-    mv ~/.config/nvim ~/.dotfiles/.config/
+    #mkdir ~/.dotfiles/.config
+    #mv ~/.config/nvim ~/.dotfiles/.config/
     echo -e "[✔]::[DotMk]: nvim config files was moved !!!"
     sleep 1
   else 
     echo [x]::[warning]: read the docs for see what files are included in the basics dotflies. 
     exit 1
   fi
-    echo -e "[✔]::[DotMk]: all files moved..."
+    echo -e "$Cyan[✔]::[DotMk]: all files moved...$White"
     sleep 1
 }
 
 
 function symbolinks {
-  echo -e "[!]::[DotMk]: Creating symbolic links....";
+  echo -e "$Red[!]::[DotMk]: Creating symbolic links....$White"
   sleep 1
-  ln -sf ~/.dotfiles/.bashrc ~/.bashrc
+  #ln -sf ~/.dotfiles/.bashrc ~/.bashrc
   echo "[✔]::[DotMk]: symbolic link bashrc created"
   sleep 1
-  ln -sf ~/.dotfiles/.bash_profile ~/.bash_profile
+  #ln -sf ~/.dotfiles/.bash_profile ~/.bash_profile
   echo "[✔]::[DotMk]: symbolic link bash_profile created"
   sleep 1
-  ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
+  #ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
   echo "[✔]::[DotMk]: symbolic link gitconfig create"
   sleep 1
-  ln -sf ~/.dotfiles/.config/nvim ~/.config/nvim
+  #ln -sf ~/.dotfiles/.config/nvim ~/.config/nvim
   echo "[✔]::[DotMk]: symbolic link config nvim created"
   sleep 1
 
-  echo "[✔]::[DotMk]: all symbolic links created!!!"
+  echo -e "$Cyan[✔]::[DotMk]: all symbolic links created!!!"
 }
 
 
@@ -182,9 +208,70 @@ function basic {
   mvfiles  && sleep 1
   symbolinks  && sleep 1
 
-  echo -e "[✔]::[DotMk]: Dotfiles created..."
+  echo -e "$Cyan[✔]::[DotMk]: Dotfiles created...$White"
   exit 1
 }
+
+
+function Admvfiles {
+  ##aqui se mueven los archivos y tambien se crean los links simbolicos
+  echo -e "[!]::[warning]: Moving files..."
+  echo -e "[!]::[warning]: this action is dangerous, pls dont do it if you don't now how to fix it"
+  
+  echo -e "[?]::[warning]: continue y/n:"
+  read doit
+
+  if [[ $doit = Y || $doit = y ]] ; then
+    echo -e "select a shell"
+    echo -e "-1 zsh"
+    echo -e "-2 bash"
+    echo -e "-3 other"
+    read sh
+
+    if [[ $sh = 1 ]] ; then
+      echo -e "you selected zsh"
+    elif [[ $sh = 2 ]] ; then
+      echo -e "you select bash"
+    elif [[ $sh = 3 ]] ; then
+      echo -e " you selected others"
+      echo -e "this function is not implemented"
+    fi 
+
+    echo -e "select editor:"
+    echo -e "-1 nvim"
+    echo -e "-2 emacs"
+    read edt
+
+    if [[ $edt = 1 ]] ; then
+      echo you selected neovim;
+    elif [[ $edt = 2 ]] ; then 
+      echo you selected emacs;
+    fi
+
+    echo -e "select your Desktop Everironments"
+    echo -e "-1 bspwn"
+    echo -e "-2 Awesomewm"
+    read de
+
+    if [[ $de = 1 ]] ; then
+      echo you selected bspwn;
+    elif [[ $de = 2 ]] ; then
+      echo you selected awesome;
+    fi  
+
+  fi
+}
+
+
+
+function advanced {
+  createfold 
+  Admvfiles && sleep 1
+
+  echo -e "[✔]::[DotMk]: Dotfiles created..."
+
+}
+
 
 function types {
 
@@ -199,6 +286,7 @@ function types {
     basic && sleep 1 
   elif [[ $selection = 2 ]] ; then
     echo [✔]::[DotMk]: you have select advanced.;
+    advanced
   elif [[ $selection = 3 ]] ; then 
     echo [✔]::[DotMk]: you have select personalized.;
   fi
@@ -212,4 +300,5 @@ function types {
 checkgit 
 archicheck && sleep 1
 #starting with 
+showlogo
 types
