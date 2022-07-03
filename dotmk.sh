@@ -248,7 +248,7 @@ function Admvfiles {
       echo you selected emacs;
     fi
 
-    echo -e "select your Desktop Everironments"
+    echo -e "select your Window Manager"
     echo -e "-1 bspwn"
     echo -e "-2 Awesomewm"
     read de
