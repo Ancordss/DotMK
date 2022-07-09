@@ -1,7 +1,4 @@
 #!/bin/bash
-
-# Variables
-
 # Regular Colors
 Black='\e[0;30m'        # Black
 Red='\e[0;31m'          # Red
@@ -230,8 +227,18 @@ function Admvfiles {
 
     if [[ $sh = 1 ]] ; then
       echo -e "you selected zsh"
+      #mv .zshrc ~/.dotfiles/
+      #mv ~/.Xresources ~/.dotfiles/
+      #ln -sf ~/.dotfiles/.zshrc ~/.zshrc
+      #ln -sf ~/.dotfiles/.Xresources ~/.Xresources
+
     elif [[ $sh = 2 ]] ; then
       echo -e "you select bash"
+      #mv .bashrc ~/.dotfiles/
+      #mv ~/.bash_profile ~/.dotfiles
+      #ln -sf ~/.dotfiles/.bashrc ~/.bashrc
+      #ln -sf ~/.dotfiles/.bash_profile ~/.bash_profile
+
     elif [[ $sh = 3 ]] ; then
       echo -e " you selected others"
       echo -e "this function is not implemented"
@@ -244,8 +251,17 @@ function Admvfiles {
 
     if [[ $edt = 1 ]] ; then
       echo you selected neovim;
+      #mkdir ~/.dotfiles/.config
+      #mv ~/.config/nvim ~/.dotfiles/.config/
+      #ln -sf ~/.dotfiles/.config/nvim ~/.config/nvim
+
     elif [[ $edt = 2 ]] ; then 
       echo you selected emacs;
+      #mkdir ~/.dotfiles/.config
+      #mv ~/.config/emacs ~/.dotfiles/.config/
+      #ln -sf ~/.dotfiles/.config/emacs ~/.config/emacs
+
+
     fi
 
     echo -e "select your Window Manager"
@@ -255,8 +271,13 @@ function Admvfiles {
 
     if [[ $de = 1 ]] ; then
       echo you selected bspwn;
+      #mv ~/.config/bspwn ~/.dotfiles/.config/
+      #ln -sf ~/.dotfiles/.config/bspwn ~/.config/bspwn
     elif [[ $de = 2 ]] ; then
       echo you selected awesome;
+      #mv ~/.config/awesome ~/.dotfiles/.config/
+      #ln -sf ~/.dotfiles/.config/awesome ~/.config/awesome
+
     fi  
 
   fi
