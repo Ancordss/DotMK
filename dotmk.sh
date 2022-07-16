@@ -39,7 +39,7 @@ spath="$( cd "$( dirname $0 )" && pwd )"
 ######################################1ST PART###################################################
 
 #Install script if not installed
-function installzarch {
+function inst {
 if [ ! -e "/usr/bin/Dotmk" ];then
 	echo -en "\e[32m[-] : Script is not installed. Do you want to install it ? (Y/N) !\e[0m"
 	read install
@@ -310,12 +310,26 @@ function types {
     advanced
   elif [[ $selection = 3 ]] ; then 
     echo [✔]::[DotMk]: you have select personalized.;
+    echo [x]::[DotMk]: This function is not implemented!.;
+
   fi
 }
 
+update() {
+  echo -e "[x]::[DotMk]: this function requires that you have already created and uploaded the .dotfiles folder to your github repository "
 
+}
 
-
+while getopts ":u" option; do
+   case $option in
+     u) # display update
+         update
+         exit;;
+    \?) # incorrect option
+        echo "Error: Invalid option"
+        exit;;
+   esac
+done
 
 ##Initiation 1
 checkgit 
