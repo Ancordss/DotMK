@@ -140,7 +140,7 @@ function createfold {
    echo -e "[!]::[warning]: run ls -al to see the directory"
    echo -e "$Red[!]::[warning]: creating folder.....$White"
    sleep 1
-   #mkdir ~/.dotfiles
+   mkdir ~/.dotfiles
    echo -e $Cyan"[✔]::[DotMk]: Folder created!!! $White"
    
 }
@@ -157,17 +157,17 @@ function mvfiles {
   if [[ $doit = Y || $doit = y ]] ; then
     echo [✔]::[DotMk]: generating basic dotfiles!!!;
     sleep 1
-    #mv .bashrc ~/.dotfiles/
+    mv .bashrc ~/.dotfiles/
     echo -e "[✔]::[DotMk]: bashrc was moved!!"
     sleep 1
-    #mv ~/.bash_profile ~/.dotfiles
+    mv ~/.bash_profile ~/.dotfiles
     echo -e "[✔]::[DotMk]: bash_profile was moved !!!"
     sleep 1
-    #mv ~/.gitconfig ~/.dotfiles
+    mv ~/.gitconfig ~/.dotfiles
     echo -e "[✔]::[DotMk]: gitconfig was moved !!!"
     sleep 1
-    #mkdir ~/.dotfiles/.config
-    #mv ~/.config/nvim ~/.dotfiles/.config/
+    mkdir ~/.dotfiles/.config
+    mv ~/.config/nvim ~/.dotfiles/.config/
     echo -e "[✔]::[DotMk]: nvim config files was moved !!!"
     sleep 1
   else 
@@ -182,16 +182,16 @@ function mvfiles {
 function symbolinks {
   echo -e "$Red[!]::[DotMk]: Creating symbolic links....$White"
   sleep 1
-  #ln -sf ~/.dotfiles/.bashrc ~/.bashrc
+  ln -sf ~/.dotfiles/.bashrc ~/.bashrc
   echo "[✔]::[DotMk]: symbolic link bashrc created"
   sleep 1
-  #ln -sf ~/.dotfiles/.bash_profile ~/.bash_profile
+  ln -sf ~/.dotfiles/.bash_profile ~/.bash_profile
   echo "[✔]::[DotMk]: symbolic link bash_profile created"
   sleep 1
-  #ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
+  ln -sf ~/.dotfiles/.gitconfig ~/.gitconfig
   echo "[✔]::[DotMk]: symbolic link gitconfig create"
   sleep 1
-  #ln -sf ~/.dotfiles/.config/nvim ~/.config/nvim
+  ln -sf ~/.dotfiles/.config/nvim ~/.config/nvim
   echo "[✔]::[DotMk]: symbolic link config nvim created"
   sleep 1
 
@@ -227,17 +227,17 @@ function Admvfiles {
 
     if [[ $sh = 1 ]] ; then
       echo -e "you selected zsh"
-      #mv .zshrc ~/.dotfiles/
-      #mv ~/.Xresources ~/.dotfiles/
-      #ln -sf ~/.dotfiles/.zshrc ~/.zshrc
-      #ln -sf ~/.dotfiles/.Xresources ~/.Xresources
+      mv .zshrc ~/.dotfiles/
+      mv ~/.Xresources ~/.dotfiles/
+      ln -sf ~/.dotfiles/.zshrc ~/.zshrc
+      ln -sf ~/.dotfiles/.Xresources ~/.Xresources
 
     elif [[ $sh = 2 ]] ; then
       echo -e "you select bash"
-      #mv .bashrc ~/.dotfiles/
-      #mv ~/.bash_profile ~/.dotfiles
-      #ln -sf ~/.dotfiles/.bashrc ~/.bashrc
-      #ln -sf ~/.dotfiles/.bash_profile ~/.bash_profile
+      mv .bashrc ~/.dotfiles/
+      mv ~/.bash_profile ~/.dotfiles
+      ln -sf ~/.dotfiles/.bashrc ~/.bashrc
+      ln -sf ~/.dotfiles/.bash_profile ~/.bash_profile
 
     elif [[ $sh = 3 ]] ; then
       echo -e " you selected others"
@@ -251,15 +251,15 @@ function Admvfiles {
 
     if [[ $edt = 1 ]] ; then
       echo you selected neovim;
-      #mkdir ~/.dotfiles/.config
-      #mv ~/.config/nvim ~/.dotfiles/.config/
-      #ln -sf ~/.dotfiles/.config/nvim ~/.config/nvim
+      mkdir ~/.dotfiles/.config
+      mv ~/.config/nvim ~/.dotfiles/.config/
+      ln -sf ~/.dotfiles/.config/nvim ~/.config/nvim
 
     elif [[ $edt = 2 ]] ; then 
       echo you selected emacs;
-      #mkdir ~/.dotfiles/.config
-      #mv ~/.config/emacs ~/.dotfiles/.config/
-      #ln -sf ~/.dotfiles/.config/emacs ~/.config/emacs
+      mkdir ~/.dotfiles/.config
+      mv ~/.config/emacs ~/.dotfiles/.config/
+      ln -sf ~/.dotfiles/.config/emacs ~/.config/emacs
 
 
     fi
@@ -271,12 +271,12 @@ function Admvfiles {
 
     if [[ $de = 1 ]] ; then
       echo you selected bspwn;
-      #mv ~/.config/bspwn ~/.dotfiles/.config/
-      #ln -sf ~/.dotfiles/.config/bspwn ~/.config/bspwn
+      mv ~/.config/bspwn ~/.dotfiles/.config/
+      ln -sf ~/.dotfiles/.config/bspwn ~/.config/bspwn
     elif [[ $de = 2 ]] ; then
       echo you selected awesome;
-      #mv ~/.config/awesome ~/.dotfiles/.config/
-      #ln -sf ~/.dotfiles/.config/awesome ~/.config/awesome
+      mv ~/.config/awesome ~/.dotfiles/.config/
+      ln -sf ~/.dotfiles/.config/awesome ~/.config/awesome
 
     fi  
 
@@ -323,13 +323,20 @@ update() {
 }
 
 help(){
-  echo ayuda XD;
+  echo this function show related info of this script
+
+  echo -h show this message;
+  echo -u update the dotfiles changes;
+  echo -i install dotmk in the system;
 }
 
 # start with the options 
 
-while getopts ":uh" option; do
+while getopts ":uhi" option; do
    case $option in
+     i)
+         install
+         exit;;
      h)
          help
          exit;;
