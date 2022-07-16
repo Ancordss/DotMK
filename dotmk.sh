@@ -39,7 +39,7 @@ spath="$( cd "$( dirname $0 )" && pwd )"
 ######################################1ST PART###################################################
 
 #Install script if not installed
-function inst {
+install() {
 if [ ! -e "/usr/bin/Dotmk" ];then
 	echo -en "\e[32m[-] : Script is not installed. Do you want to install it ? (Y/N) !\e[0m"
 	read install
@@ -318,10 +318,21 @@ function types {
 update() {
   echo -e "[x]::[DotMk]: this function requires that you have already created and uploaded the .dotfiles folder to your github repository "
 
+  echo [!]::[DotMk]: Updating repository...;
+  ./Ds.sh
 }
 
-while getopts ":u" option; do
+help(){
+  echo ayuda XD;
+}
+
+# start with the options 
+
+while getopts ":uh" option; do
    case $option in
+     h)
+         help
+         exit;;
      u) # display update
          update
          exit;;
@@ -330,6 +341,8 @@ while getopts ":u" option; do
         exit;;
    esac
 done
+
+
 
 ##Initiation 1
 checkgit 
