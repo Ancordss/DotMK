@@ -45,7 +45,9 @@ if [ ! -e "/usr/bin/Dotmk" ];then
 	read install
 	if [[ $install = Y || $install = y ]] ; then
 		wget  -O /usr/bin/dotmk
+    wget -O /usr/bin/Ds
 		chmod +777 /usr/bin/dotmk
+    chmod +777 /ust/bin/dotmk
 		echo "Script should now be installed. Launching it !"
 		sleep 1
     echo "You can run the script anytime by typing 'dotmk' on the Terminal"
@@ -328,11 +330,15 @@ help(){
   echo -h show this message;
   echo -u update the dotfiles changes;
   echo -i install dotmk in the system;
+  echo -v version 
 }
 
 # start with the options 
+version(){
+  echo DotMk 1.0.0
+}
 
-while getopts ":uhi" option; do
+while getopts ":uhiv" option; do
    case $option in
      i)
          install
@@ -342,6 +348,9 @@ while getopts ":uhi" option; do
          exit;;
      u) # display update
          update
+         exit;;
+     v) 
+         version
          exit;;
     \?) # incorrect option
         echo "Error: Invalid option"
