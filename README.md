@@ -3,23 +3,26 @@
 This script help you to create in a easy way your own dotfiles
 
 ### Preview
-![image1.png]()
+![image1.png](https://raw.githubusercontent.com/Ancordss/DotMk/main/src/image1.png)
 
-![image2.png]()
+![image2.png](https://raw.githubusercontent.com/Ancordss/DotMk/main/src/image2.png)
 
 ### Install and Usage
+to install this script
 
-to install this script run this:
-
+- Copy this repostiroty
+- Open the terminal.
+- Type te following commands:
+```
 chmod +x ./dotmk.sh
 ./dotmk.sh
-
-if u want install run 
-
+```
+- If u want install run 
+```
 ./dotmk.sh -i 
-
-to see help run 
-
+```
+- To see help run 
+```
 ./dotmk.sh -h 
-
+```
 
